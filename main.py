@@ -5,6 +5,7 @@ import typer
 from faster_whisper import WhisperModel
 
 from transcription import transcribe_complete
+from translation import translate_subtitles
 
 
 app = typer.Typer()
@@ -21,7 +22,7 @@ def create_ru(source: Path):
 
 @app.command()
 def create_eng(subtitles: str = "subtitles_ru.srt"):
-    pass
+    translate_subtitles(subtitles, "subtitles_en.srt", model="qwen2.5:3b", batch_size=10)
 
 
 if __name__ == "__main__":
